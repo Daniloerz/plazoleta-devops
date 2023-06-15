@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  plazoleta:
+    image: 687633921893.dkr.ecr.us-east-1.amazonaws.com/plazoleta
+    container_name: plazoleta-container
+    expose:
+      - 8082
+    ports:
+      - 8082:8082
+    environment:
+      BD_URL: ${BD_URL_PLAZOLETA}
+      BD_USERNAME: ${BD_USER_PLAZOLETA}
+      BD_PASSWORD: ${BD_PASS_PLAZOLETA}
+      eureka.client.serviceUrl.defaultZone: ${EUREKA_DEFAULTZONE_PLAZOLETA}
+      server.port: 8082
+
+
+
+
+
+
+
+
