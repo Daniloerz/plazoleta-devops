@@ -2,6 +2,28 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.8'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id "jacoco"
+	id "org.sonarqube" version "4.2.1.3168"
+}
+
+sonar {
+	properties {
+		property "sonar.projectKey", "Daniloerz_plazoleta-devops"
+		property "sonar.organization", "daniloerz"
+		property "sonar.host.url", "https://sonarcloud.io"
+	}
+}
+
+jacocoTestReport {
+	reports {
+		xml.enabled true
+	}
+	dependsOn test
+}
+test.finalizedBy jacocoTestReport
+
+tasks.named('sonar').configure {
+	dependsOn jacocoTestReport
 }
 
 
