@@ -32,6 +32,8 @@ jobs:
           restore-keys: ${{ runner.os }}-gradle
       - name: Make gradlew executable
         run: chmod +x ./gradlew
+      - name: Solving problems
+        run: chmod +x start.sh && sed -i -e 's/\r$//' start.sh
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
