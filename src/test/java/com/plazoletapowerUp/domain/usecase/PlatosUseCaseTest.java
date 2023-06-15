@@ -20,6 +20,7 @@ import org.mockito.Mockito;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class PlatosUseCaseTest {
 
@@ -39,7 +40,6 @@ class PlatosUseCaseTest {
         platosUseCase = new PlatosUseCase(platosPersistencePort, categoriaPersistencePort, restaurantePersistencePort, usuarioClientPort);
     }
 
-
     @Test
     public void testFindPlatosByRestaurante_ValidParameters_ReturnPlatosRestaurantePageableModel() {
         Integer id = 1;
@@ -48,13 +48,13 @@ class PlatosUseCaseTest {
 
         PlatosRestaurantePageableModel pageableModel = new PlatosRestaurantePageableModel();
 
-        Mockito.when(platosPersistencePort.findPlatosByIdAndPageable(id, initPage, numElementsPage)).thenReturn(pageableModel);
+        when(platosPersistencePort.findPlatosByIdAndPageable(id, initPage, numElementsPage)).thenReturn(pageableModel);
 
         PlatosRestaurantePageableModel result = platosUseCase.findPlatosByRestaurante(id, initPage, numElementsPage);
 
         Assertions.assertEquals(pageableModel, result);
 
-        Mockito.verify(platosPersistencePort).findPlatosByIdAndPageable(id, initPage, numElementsPage);
+        verify(platosPersistencePort).findPlatosByIdAndPageable(id, initPage, numElementsPage);
     }
 
 }
