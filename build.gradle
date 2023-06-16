@@ -18,9 +18,29 @@ jacocoTestReport {
 	reports {
 		xml.enabled true
 	}
+	afterEvaluate {
+		classDirectories.setFrom(files(classDirectories.files.collect {
+			fileTree(dir: it, exclude: [
+					"com/plazoletapowerUp/infrastructure/configuration/BeanConfiguration.class",
+					"com/plazoletapowerUp/infrastructure/exceptionhandler/**",
+					"com/plazoletapowerUp/infrastructure/documentation/OpenApiConfiguration.class",
+					"com/plazoletapowerUp/infrastructure/out/jpa/entity/**",
+					"com/plazoletapowerUp/application/dto/request/PedidoPlatoRequestDto.class",
+					"com/plazoletapowerUp/application/dto/response/PedidoResponseDto.class",
+					"com/plazoletapowerUp/application/dto/response/RestauranteResponseDto.class",
+					"com/plazoletapowerUp/domain/model/**",
+					"com/plazoletapowerUp/domain/usecase/PedidosUseCase.class",
+					"com/plazoletapowerUp/PlazoletaPowerUpApplication.class",
+					"com/plazoletapowerUp/infrastructure/out/feing/dto/**",
+					"com/plazoletapowerUp/infrastructure/out/feing/mapper/**",
+			])
+		}))
+	}
+
 	dependsOn test
 }
 test.finalizedBy jacocoTestReport
+
 
 tasks.named('sonar').configure {
 	dependsOn jacocoTestReport
