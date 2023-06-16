@@ -57,6 +57,8 @@ jobs:
         with:
           java-version: 11
           distribution: 'zulu' # Alternative distribution options are available
+      - name: Convert gradlew file
+        run: sudo apt-get -y install dos2unix && dos2unix gradlew
       - name: Make gradlew executable
         run: chmod +x ./gradlew
       - name: Validate Gradle wrapper
