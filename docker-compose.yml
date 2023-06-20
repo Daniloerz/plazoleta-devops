@@ -2,7 +2,7 @@ version: '3'
 
 services:
   plazoleta:
-    image: 687633921893.dkr.ecr.us-east-1.amazonaws.com/plazoleta
+    image: 687633921893.dkr.ecr.us-east-1.amazonaws.com/restaurantes-devops:latest
     container_name: plazoleta-container
     expose:
       - 8082
